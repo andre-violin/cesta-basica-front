@@ -64,7 +64,9 @@ export default function SignIn({ history }) {
           <datalist id="pets">
             {pets &&
               pets.map(petData => (
-                <option key={petData._id}>{petData.name}</option>
+                <option key={petData._id} value={petData._id}>
+                  {petData.name}
+                </option>
               ))}
           </datalist>
           {/* <select id="car" onChange={handleInputChange} required>
