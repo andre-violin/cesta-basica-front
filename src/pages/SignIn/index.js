@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { MdShoppingCart } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 import { login } from '../../services/auth';
 
-import { Container, Form, SubmitButton, InputContainer } from './styles';
+import {
+  Container,
+  Form,
+  SubmitButton,
+  InputContainer,
+  ContainerLinks,
+} from './styles';
 
 export default function SignIn({ history }) {
   const [loading, setLoading] = useState('disabled');
@@ -75,6 +82,9 @@ export default function SignIn({ history }) {
 
         <SubmitButton loading={loading}>entrar</SubmitButton>
       </Form>
+      <ContainerLinks>
+        <Link to="/">Cancelar</Link>
+      </ContainerLinks>
     </Container>
   );
 }

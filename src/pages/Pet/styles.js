@@ -59,17 +59,3 @@ export const SubmitButton = styled.button.attrs(props => ({
     opacity: 0.4;
   }
 `;
-
-export const ContainerLinks = styled.div`
-  margin: 50px auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: flex-end;
-  max-width: 300px;
-
-  a {
-    color: #eee;
-    text-decoration: none;
-  }
-`;

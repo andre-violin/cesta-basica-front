@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
+import {
+  MdPersonAdd,
+  MdPets,
+  MdDashboard,
+  MdExitToApp,
+  MdDirectionsCar,
+} from 'react-icons/md';
 
-import { Container } from './styles';
+import { Container, ButtonExit } from './styles';
 import { logout } from '../../services/auth';
 
 export default function Menu(props) {
@@ -13,10 +20,26 @@ export default function Menu(props) {
   return (
     <Container>
       {!loged && <Redirect to="/" />}
-      <NavLink to="/signup">Cadastro</NavLink>
-      <button type="button" onClick={handleLogout}>
-        Sair
-      </button>
+      <NavLink to="/admin">
+        <MdDashboard />
+        <span>Home</span>
+      </NavLink>
+      <NavLink to="/signup">
+        <MdPersonAdd />
+        <span>Cadastro de Usuário</span>
+      </NavLink>
+      <NavLink to="/pet">
+        <MdPets />
+        <span>Cadastro de Pet</span>
+      </NavLink>
+      <NavLink to="/car">
+        <MdDirectionsCar />
+        <span>Cadastro de Veículos</span>
+      </NavLink>
+      <ButtonExit type="button" onClick={handleLogout}>
+        <MdExitToApp />
+        <span>Sair</span>
+      </ButtonExit>
     </Container>
   );
 }
