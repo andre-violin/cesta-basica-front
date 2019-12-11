@@ -7,32 +7,23 @@ import { Container, Form, SubmitButton, InputContainer } from './styles';
 import api from '../../services/api';
 import { userLocal } from '../../services/auth';
 
-export default function SignIn({ history }) {
+export default function Pet({ history }) {
   const [pet, setPet] = useState({ name: '', breed: '', user: '' });
   const [cars, setCars] = useState([]);
-  const [car, setCar] = useState('');
 
   useEffect(() => {
     const populateCars = async () => {
-      const allCars = await api.get(`/car`);
-      setCars(allCars.data);
+      const requisicao = await api.get(`/car`);
+      setCars(requisicao.data);
+
+      const { _id } = await userLocal();
+      setPet({ user: _id });
     };
     populateCars();
   }, []);
 
-  useEffect(() => {
-    const populatePet = async () => {
-      const { _id } = await userLocal();
-      setPet({ user: _id });
-    };
-    populatePet();
-  }, []);
-
   function handleInputChange(e) {
     const { name, value } = e.target;
-    if (name === 'car') {
-      setCar(name);
-    }
     setPet({
       ...pet,
       [name]: value,
@@ -60,10 +51,10 @@ export default function SignIn({ history }) {
         </h1>
         <InputContainer>
           <label htmlFor="car">nome</label>
-          <select id="car" onChange={handleInputChange} value={car} required>
+          <select id="car" name="car" onChange={handleInputChange}>
             {cars &&
-              cars.map(({ _id: idCar, model }) => (
-                <option key={idCar} value={idCar}>
+              cars.map(({ _id, model }) => (
+                <option key={_id} value={_id}>
                   {model}
                 </option>
               ))}
